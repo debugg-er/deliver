@@ -1,0 +1,32 @@
+.Avatar {
+  position: relative;
+}
+
+.Avatar > img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.Avatar.online::after {
+  content: "";
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  z-index: 1;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  background: green;
+}
+
+.Avatar.online::before {
+  content: "";
+  position: absolute;
+  bottom: calc(3% - 2px);
+  right: calc(3% - 2px);
+  z-index: 1;
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  background: white;
+}

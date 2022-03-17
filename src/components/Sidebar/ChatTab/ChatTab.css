@@ -1,0 +1,54 @@
+.ChatTab {
+  padding: 14px 0 14px 18px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ChatTab:hover {
+  background-color: var(--main-background-2);
+}
+
+.ChatTab.active {
+  background-color: var(--main-background-3);
+}
+
+.ChatTab.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 4px;
+  background: #4384f5;
+}
+
+.ChatTab__Info {
+  margin-left: 12px;
+  flex-grow: 1;
+}
+
+.ChatTab__Info-Name {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.ChatTab__Info-LastMessage {
+  color: #444;
+  word-break: break-word;
+}
+
+.ChatTab__More {
+  width: 20px;
+  height: 100%;
+}
+
+.ChatTab__More-Time {
+  white-space: nowrap;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  font-size: 11px;
+  color: #444;
+}

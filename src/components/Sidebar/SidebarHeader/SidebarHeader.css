@@ -1,0 +1,4 @@
+.SidebarHeader {
+  padding: 14px;
+  border-bottom: 1px solid var(--separator);
+}

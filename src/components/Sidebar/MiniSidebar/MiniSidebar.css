@@ -1,0 +1,18 @@
+.MiniSidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.MiniSidebar__Logo {
+  background-color: var(--main-orange-1);
+  /* border-bottom: 1px solid var(--separator); */
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MiniSidebar__Logo img {
+  filter: grayscale(1);
+}

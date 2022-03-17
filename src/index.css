@@ -1,13 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  --separator: #dde2e6;
+  --main-background-1: #f3f7f9;
+  --main-background-2: #eaeef1;
+  --main-background-3: #e1e8ec;
+  --main-background-dark-1: #1a1a1a;
+  --main-grey-1: #a3a3a3;
+  --main-orange-1: #ff5100;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", */
+  /*   "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; */
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
+  font-family: "Fredoka", sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  font-size: 14px;
+}
+
+.Global__Title-1 {
+  font-size: 22px;
+  color: #424d57;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.Global__LineLimit-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.Global__LineLimit-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+/* track */
+::-webkit-scrollbar-track {
+  background: var(--main-background-1);
+}
+/* handle */
+::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 5px;
+}
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
 }

@@ -1,0 +1,17 @@
+.MiniSidebarMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+}
+
+.MiniSidebarMenu__Icon {
+  font-size: 28px !important;
+  color: var(--main-grey-1);
+}
+
+.MiniSidebarMenu__Icon:hover {
+  color: var(--main-background-3);
+}
