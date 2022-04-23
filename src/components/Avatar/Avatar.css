@@ -2,9 +2,10 @@
   position: relative;
 }
 
-.Avatar > img {
+.Avatar img {
   border-radius: 50%;
   object-fit: cover;
+  display: block;
 }
 
 .Avatar.online::after {
@@ -29,4 +30,33 @@
   height: 14px;
   width: 14px;
   background: white;
+}
+
+.Avatar__Group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.Avatar__Group > * {
+  transform: scale(1.2);
+}
+
+.Avatar__Group-Num {
+  background-color: var(--main-grey-1);
+  border-radius: 50%;
+  font-size: 12px;
+  text-align: center;
+  vertical-align: center;
+  color: white;
+}
+
+.Avt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--main-grey-1);
+  user-select: none;
 }

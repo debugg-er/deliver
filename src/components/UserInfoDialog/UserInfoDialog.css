@@ -1,0 +1,58 @@
+.UserInfoDialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: 24px auto;
+  min-height: 400px;
+}
+
+.UserInfoDialog__Avatar {
+  margin: 20px 0 40px 0;
+  position: relative;
+}
+.UserInfoDialog__Avatar-Camera {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: var(--main-grey-1);
+  border-radius: 50%;
+  background-color: white;
+  padding: 4px;
+  font-size: 13px !important;
+  border: 1px solid var(--main-background-2);
+  cursor: pointer;
+}
+
+.UserInfoDialog__Avatar-Camera:hover {
+  color: var(--main-grey-2);
+}
+
+.UserInfoDialog__Inputs {
+  flex-grow: 1;
+}
+
+.UserInfoDialog__Inputs-name {
+  display: flex;
+}
+
+.UserInfoDialog__Inputs-name > *:not(:last-child) {
+  margin-right: 12px;
+}
+
+.UserInfoDialog__Inputs-Note {
+  color: var(--main-grey-2);
+  margin-top: 2px;
+  margin-bottom: 12px;
+}
+
+.UserInfoDialog__Buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.UserInfoDialog__Buttons > * {
+  margin-left: 12px;
+}
+

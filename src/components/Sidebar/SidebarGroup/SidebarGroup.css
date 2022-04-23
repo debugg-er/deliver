@@ -1,0 +1,22 @@
+.SidebarGroup__Header {
+  display: flex;
+  align-items: center;
+  padding: 16px 12px;
+  cursor: pointer;
+  user-select: none;
+  /* background-color: var(--main-background-3); */
+}
+
+.SidebarGroup__Header svg {
+  margin-right: 12px;
+  color: var(--main-grey-2);
+}
+
+.SidebarGroup__Header:hover .SidebarGroup__Header-Title,
+.SidebarGroup__Header:hover svg {
+  color: var(--main-orange-1) !important;
+}
+
+.SidebarGroup__Showmore {
+  text-align: center;
+}

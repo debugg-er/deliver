@@ -1,0 +1,37 @@
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.Loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--main-orange-1);
+  z-index: 20;
+}
+
+.Loading-enter-active {
+  animation: 10s ease-out loading;
+}
+
+.Loading-enter-done {
+  width: 100%;
+}
+
+.Loading-exit {
+  width: 100%;
+  opacity: 1;
+}
+.Loading-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}

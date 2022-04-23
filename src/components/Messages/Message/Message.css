@@ -1,0 +1,128 @@
+.Message {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* overflow: hidden; */
+}
+
+.Message.update > div {
+  align-self: center;
+  color: #65676b;
+  font-size: 12;
+}
+
+.MessageWrapper {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  /* overflow: hidden; */
+}
+
+.Message.me {
+  align-items: flex-end;
+}
+
+.Message.me .MessageWrapper {
+  flex-direction: row-reverse;
+}
+
+.Message__Avatar {
+  margin: 0 4px;
+}
+
+.Message__Content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+}
+
+.Message__Content-Text {
+  width: fit-content;
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  word-break: break-all;
+  background: #e4e6eb;
+  padding: 12px;
+  border-radius: 0 16px 16px 0;
+}
+
+.Message.me .Message__Content-Text {
+  border-radius: 16px 0 0 16px;
+  background-color: var(--main-red-1);
+  color: white;
+}
+
+.Message.revoked .Message__Content-Text {
+  color: var(--main-grey-2);
+  font-style: italic;
+  border: 1px solid #76777a;
+  background: transparent;
+}
+
+.Message__Actions {
+  /* opacity: 0; */
+  display: flex;
+  width: fit-content;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+  transition: opacity 150ms;
+  z-index: 1;
+}
+
+/* .MessageWrapper:hover .Message__Actions { */
+/*   opacity: 1; */
+/* } */
+
+.Message.me .Message__Actions {
+  flex-direction: row-reverse;
+  left: 0;
+  transform: translate(-100%, -50%);
+  color: black;
+}
+
+.Message__Actions > div {
+  margin: 0 12px;
+}
+
+.Message__Info {
+  margin: 0 32px;
+  color: var(--main-grey-2);
+}
+
+.Message.me .Message__Info {
+  align-self: flex-end;
+}
+
+.Message__Reactions {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+  background-color: var(--main-background-2);
+  padding: 2px;
+  border-radius: 8px;
+  transform: translate(50%, 50%);
+}
+
+.Message.me .Message__Reactions {
+  left: 0;
+  transform: translate(-50%, 50%);
+}
+
+.Message__Reactions > div:not(:last-child) {
+  margin-right: 4px;
+}
+
+.Message.hasReact {
+  margin-bottom: 10px;
+}
+
+.Message__Attachments {
+  display: flex;
+}

@@ -1,0 +1,38 @@
+.FileUpload {
+  width: fit-content;
+  position: relative;
+  width: 120px;
+  height: 200px;
+}
+
+.FileUpload::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  height: 5px;
+  width: var(--progress);
+  background-color: red;
+  z-index: 2;
+}
+
+.FileUpload__RemoveButton {
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: var(--main-background-1);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  line-height: 15px;
+}
+
+.FileUpload video,
+.FileUpload img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  background-color: black;
+}

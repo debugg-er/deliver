@@ -1,65 +1,68 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useEvent } from "@contexts/EventContext";
+import { ConversationProvider } from "@contexts/ConversationContext.tsx";
+import { useAuth } from "@contexts/AuthContext";
+import { useSetLoading } from "@contexts/LoadingContext";
+import { IConversation } from "@interfaces/Conversation";
 import conversationApi from "@api/conversationApi";
-import { IMessage } from "@interfaces/Message";
+import { IParticipant } from "@interfaces/Participant";
+import { useEvent } from "@contexts/EventContext";
+
+import ChatSection from "./ChatSection";
+import ConversationInfoSection from "./ConversationInfoSection";
 
 import "./Chat.css";
 
 function Chat() {
   const { conversationId } = useParams<{ conversationId: string }>();
-  const [messages, setMessages] = useState<Array<IMessage>>([]);
-  const [input, setInput] = useState<string>("");
+  const [conversation, setConversation] = useState<IConversation | null>(null);
+  const [showInfo, setShowInfo] = useState(true);
 
+  const { user } = useAuth();
+  const setLoading = useSetLoading();
   const socket = useEvent();
 
   useEffect(() => {
-    conversationApi.getConversationMessages(+conversationId).then(setMessages);
-    socket.emit("join", conversationId, console.log);
-  }, [conversationId, socket]);
+    setLoading(true);
+    conversationApi
+      .getConversation(+conversationId)
+      .then(setConversation)
+      .finally(() => setLoading(false));
+  }, [conversationId, setLoading]);
 
   useEffect(() => {
-    function handleReconnectSuccess() {
-      socket.emit("join", conversationId, console.log);
+    function handleChangeNickname(participant: IParticipant) {
+      if (!conversation) return;
+      if (participant.conversation.id !== conversation.id) return;
+      conversation.participants = [
+        ...conversation.participants.filter((p) => p.id !== participant.id),
+        participant,
+      ];
+      setConversation({ ...conversation });
     }
-    socket.io.on("reconnect", handleReconnectSuccess);
-
+    socket.on("change_nickname", handleChangeNickname);
     return () => {
-      socket.io.off("reconnect", handleReconnectSuccess);
+      socket.off("change_nickname", handleChangeNickname);
     };
-  }, [conversationId, socket]);
+  }, [conversation, setConversation, socket]);
 
-  useEffect(() => {
-    socket.on("broadcast", console.log);
-    socket.on("broadcast", (mess) => setMessages((messages) => [mess, ...messages]));
-    // eslint-disable-next-line
-  }, [socket]);
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!socket) return;
-    if (input.trim() === "") return;
-    socket.emit("message", input.trim());
-    setInput("");
-  }
+  if (!user) return null;
+  if (!conversation) return null;
 
   return (
-    <div className="Chat">
-      {messages
-        .slice(0)
-        .reverse()
-        .map((mess) => (
-          <div key={mess.id}>
-            <b>{mess.participant.user.username}: </b>
-            {mess.content}
+    <ConversationProvider conversation={conversation} setConversation={setConversation as any}>
+      <div className="Chat">
+        <div className="Chat__ChatSection">
+          <ChatSection showInfo={showInfo} onShowInfoChange={(value) => setShowInfo(value)} />
+        </div>
+        {showInfo && (
+          <div className="Chat__ConversationInfoSection">
+            <ConversationInfoSection />
           </div>
-        ))}
-      <form onSubmit={handleSubmit}>
-        <input type="text" onChange={(e) => setInput(e.target.value)} value={input} />
-        <input type="submit" value="send" />
-      </form>
-    </div>
+        )}
+      </div>
+    </ConversationProvider>
   );
 }
 

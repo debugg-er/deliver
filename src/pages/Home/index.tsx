@@ -1,17 +1,23 @@
 import React from "react";
+
 import "./Home.css";
 
-import { useAuth } from "@contexts/AuthContext";
-
 function Home() {
-  const { login, logout } = useAuth();
-
   return (
     <div className="Home">
-      <button onClick={() => login("purplezebra536", "password")}>login</button>
-      <button onClick={() => login("lazypanda267", "password")}>login 2</button>
+      <div className="Home__Title">Chào mừng đến với Deliver</div>
+      <div className="Home__Description">
+        Khám phá những tiện ích hỗ trợ làm việc và trò chuyện cùng người thân, bạn bè được tối ưu
+        hoá cho máy tính của bạn.
+      </div>
 
-      <button onClick={() => logout()}>logout</button>
+      <img className="Home__Img" src="/welcome.jpg" alt="" />
+
+      <div className="Home__Title2">Trải nghiệm xuyên suốt</div>
+
+      <div className="Home__Description">
+        Kết nối và giải quyết công việc trên mọi thiết bị với dữ liệu luôn được đồng bộ
+      </div>
     </div>
   );
 }

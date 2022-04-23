@@ -1,0 +1,39 @@
+.MessageActions {
+  display: flex;
+  padding: 4px;
+  border-radius: 8px;
+  background-color: var(--main-background-2);
+}
+
+.MessageActions svg {
+  margin: 0 4px;
+  color: #999;
+  transition: color 150ms;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.MessageActions svg:hover {
+  color: #555;
+}
+
+.MessageActions.me {
+  flex-direction: row-reverse;
+}
+
+.MessageActions__React {
+  position: relative;
+}
+
+.MessageActions__React-Picker {
+  position: absolute;
+  bottom: calc(100% - 24px);
+  left: 50%;
+  transform: translateX(-35%);
+  padding: 8px 8px 32px 8px;
+  z-index: -1;
+}
+
+.MessageActions.me .MessageActions__React-Picker {
+  transform: translateX(-65%);
+}

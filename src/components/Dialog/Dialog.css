@@ -1,0 +1,73 @@
+/* @keyframes appear { */
+/*   0% { */
+/*     opacity: 0; */
+/*   } */
+/*   100% { */
+/*     opacity: 1; */
+/*   } */
+/* } */
+
+.MuiDialog-paper {
+  max-width: unset !important;
+}
+
+.Dialog--BlueButton,
+.Dialog--Button {
+  position: relative;
+  padding: 6px 12px;
+  border-radius: 3px;
+  width: fit-content;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  border: none;
+}
+.Dialog--BlueButton {
+  background-color: var(--main-blue-1);
+}
+.Dialog--Button {
+  color: grey;
+}
+
+.Dialog--Button:hover::before,
+.Dialog--BlueButton:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  height: 100%;
+  width: 100%;
+  background-color: #0001;
+}
+
+.Dialog {
+  width: var(--width);
+}
+
+.Dialog__Header {
+  padding: 0 16px;
+  height: 48px;
+  border-bottom: 1px solid var(--separator);
+  display: flex;
+  align-items: center;
+}
+
+.Dialog__Header-Title {
+  font-size: 17px;
+  font-weight: 500;
+  flex-grow: 1;
+}
+
+.Dialog__Header-Close {
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 24px !important;
+}
+
+.Dialog__Header-Close:hover {
+  background-color: var(--main-background-2);
+}

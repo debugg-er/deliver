@@ -1,0 +1,70 @@
+.ChatInput {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  border-top: 1px solid var(--separator);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+}
+
+.ChatInput__Input {
+  flex-grow: 1;
+  line-height: 18px;
+  font-size: 15px;
+  padding: 12px 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.ChatInput__Input > textarea {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.ChatInput__Icon {
+  display: flex;
+  align-items: center;
+  color: var(--main-grey-2);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.ChatInput__Icon:hover {
+  color: #444;
+}
+
+.ChatInput__Icon:last-child {
+  margin: 0;
+}
+
+.ChatInput__Emoji {
+  position: relative;
+}
+
+.ChatInput__Emoji-Picker {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  margin-bottom: 12px;
+  transform: translateX(-50%);
+}
+
+.ChatInput__Input-Files {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ChatInput__Input-Files > div {
+  background-color: black;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}

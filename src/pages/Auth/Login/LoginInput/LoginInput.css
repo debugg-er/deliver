@@ -1,0 +1,69 @@
+.LoginInput {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.LoginInput:not(:last-child) {
+  margin-bottom: var(--margin-bottom);
+}
+
+.LoginInput__Label {
+  color: #333333;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.LoginInput__Label.error {
+  color: red;
+}
+
+.LoginInput__Input {
+  display: flex;
+  border-bottom: 1px solid #d9d9d9;
+  align-items: center;
+  position: relative;
+}
+
+.LoginInput__Input-Icon {
+  position: absolute;
+  font-size: 15px !important;
+  color: #adadad;
+  margin-left: 8px;
+  z-index: 2;
+}
+
+.LoginInput.focus .LoginInput__Input-Icon {
+  color: var(--main-orange-1);
+}
+
+.LoginInput__Input-Text {
+  outline: none;
+  border: none;
+  line-height: 36px;
+  width: 100%;
+  padding: 0 8px 0 28px;
+  border-radius: 3px;
+}
+
+.LoginInput__Input-Text::placeholder {
+  color: #adadad;
+}
+
+.LoginInput__Slider {
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  height: 1px;
+  width: 100%;
+  background-color: #333333;
+  z-index: 1;
+  transition: left 0.4s ease-out;
+}
+
+.LoginInput.focus .LoginInput__Slider {
+  left: 0;
+}
+.LoginInput.blur .LoginInput__Slider {
+  left: -100%;
+}

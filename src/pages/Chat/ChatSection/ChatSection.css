@@ -1,0 +1,48 @@
+.ChatSection .infinite-scroll-component {
+  overflow: hidden !important;
+}
+
+.ChatSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ChatSection__Header {
+  flex-shrink: 0;
+  padding: 0 24px;
+  height: 54px;
+  border-bottom: 1px solid var(--separator);
+  box-shadow: 2px 0 4px #00000033;
+  display: flex;
+  align-items: center;
+}
+.ChatSection__Header-Avatar {
+  margin-right: 12px;
+}
+
+.ChatSection__Header-Info-Title {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.ChatSection__Messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.ChatSection__Messages > .me {
+  align-self: flex-end;
+}
+
+.ChatSection--Header-Expand svg {
+  color: var(--main-grey-2);
+  cursor: pointer;
+}
+
+.ChatSection--Header-Expand svg:hover {
+  color: black;
+}

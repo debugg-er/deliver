@@ -1,0 +1,36 @@
+.ConversationInfoHeader {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--main-title-1);
+}
+
+.ConversationInfoHeader__Tab {
+  height: 100%;
+  margin: 0;
+  padding: 0 16px;
+  font-weight: 500;
+  font-size: 17px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background 100ms;
+  /* Column | row */
+}
+
+.ConversationInfoHeader__Tab:hover {
+  background-color: var(--main-background-2);
+}
+
+.ConversationInfoHeader__Tab.active::before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--main-blue-1);
+}

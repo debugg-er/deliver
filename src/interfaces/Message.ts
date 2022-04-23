@@ -1,23 +1,55 @@
-import {IParticipant} from "./Participant";
+import { FileUploadHandler } from "@api/fileApi";
+import { IAttachment } from "./Attachment";
+import { IParticipant } from "./Participant";
 
-export interface IMessage {
-  id: number;
+export interface IMessageReaction {
+  messageId: string;
 
-  content: string;
+  participantId: number;
+
+  emoji: string;
 
   createdAt: Date;
 
-  revokedAt: Date;
+  message: IMessage;
 
-  // attachments: Array<Attachment>;
+  participant: IParticipant;
+}
+
+export interface IMessage {
+  id: string;
+
+  content: string;
+
+  type: null | "update";
+
+  createdAt: Date;
+
+  revokedAt: Date | null;
+
+  attachments: Array<IAttachment>;
 
   participantId: number;
 
   participant: IParticipant;
 
-  parent: IMessage;
+  parent: IMessage | null;
 
   replies: Array<IMessage>;
 
-  // reactions: Array<MessageReaction>;
+  seenParticipants: Array<IParticipant>;
+
+  deliveredParticipants: Array<IParticipant>;
+
+  reactions: Array<IMessageReaction>;
+
+  reactionCount: number;
+}
+
+export interface IMessageWithAction extends IMessage {
+  action?: "create";
+  payload?: {
+    text: string;
+    attachments: Array<FileUploadHandler>;
+  };
 }

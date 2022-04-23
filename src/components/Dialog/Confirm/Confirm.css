@@ -1,0 +1,19 @@
+.Confirm {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Confirm__Message {
+  margin-bottom: 16px;
+}
+
+.Confirm__Buttons {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+.Confirm__Buttons > div {
+  margin-left: 8px;
+}

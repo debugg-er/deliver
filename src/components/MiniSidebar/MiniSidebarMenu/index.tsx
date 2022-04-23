@@ -7,9 +7,10 @@ import "./MiniSidebarMenu.css";
 interface MiniSidebarMenuProps {
   children: React.ReactNode;
   Icon: SvgIconComponent | React.ReactElement;
+  closeWhenClick?: boolean;
 }
 
-function MiniSidebarMenu({ children, Icon }: MiniSidebarMenuProps) {
+function MiniSidebarMenu({ children, Icon, closeWhenClick = true }: MiniSidebarMenuProps) {
   const [anchorEl, setAnchorEl] = useState<any>(null);
 
   function handleClose() {
@@ -23,15 +24,23 @@ function MiniSidebarMenu({ children, Icon }: MiniSidebarMenuProps) {
       </div>
 
       <Menu
+        transitionDuration={0}
+        TransitionProps={{
+          style: {
+            boxShadow: "0 0 10px 0 #0000002e",
+            borderRadius: 4,
+          },
+        }}
         anchorEl={anchorEl}
         open={!!anchorEl}
         onClose={handleClose}
+        onClick={closeWhenClick ? handleClose : undefined}
         anchorOrigin={{
           vertical: "center",
           horizontal: "right",
         }}
         transformOrigin={{
-          vertical: "bottom",
+          vertical: "top",
           horizontal: "left",
         }}
       >

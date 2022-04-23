@@ -11,10 +11,12 @@ const AuthContext = React.createContext<{
   // undefined means the app is loading user credential
   // null is unauthorize
   user: Auth;
+  setUser: React.Dispatch<React.SetStateAction<Auth>>;
   logout: () => void;
   login: (username: string, password: string) => void;
 }>({
   user: null,
+  setUser: () => {},
   logout: () => {},
   login: () => {},
 });
@@ -24,7 +26,7 @@ export function useAuth() {
 }
 
 export function AuthProvider(props: { children?: React.ReactNode }) {
-  const [user, setUser] = useState<Auth | undefined>(undefined);
+  const [user, setUser] = useState<Auth>(undefined as any);
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
@@ -38,9 +40,12 @@ export function AuthProvider(props: { children?: React.ReactNode }) {
         .then((_user) => setUser({ ...parsedToken, ..._user, token }))
         .catch(() => {
           window.localStorage.removeItem("token");
+          if (!window.location.pathname.startsWith("/auth/login"))
+            window.location.href = "/auth/login";
           setUser(null);
         });
     } catch {
+      if (!window.location.pathname.startsWith("/auth")) window.location.href = "/auth/login";
       setUser(null);
     }
   }, []);
@@ -48,7 +53,7 @@ export function AuthProvider(props: { children?: React.ReactNode }) {
   async function login(username: string, password: string) {
     const data = await accountApi.login(username, password);
     window.localStorage.setItem("token", data.token);
-    window.location.reload();
+    window.location.href = "/messages";
   }
 
   async function logout() {
@@ -57,12 +62,12 @@ export function AuthProvider(props: { children?: React.ReactNode }) {
     } catch {
     } finally {
       window.localStorage.removeItem("token");
-      window.location.reload();
+      window.location.href = "/auth/login";
     }
   }
 
   return (
-    <AuthContext.Provider value={{ user: user || null, logout, login }}>
+    <AuthContext.Provider value={{ user, setUser, logout, login }}>
       {user !== undefined && props.children}
     </AuthContext.Provider>
   );

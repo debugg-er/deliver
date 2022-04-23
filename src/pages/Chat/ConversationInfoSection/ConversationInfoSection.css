@@ -1,0 +1,9 @@
+.ConversationInfoSection {
+  height: 100%;
+  overflow: auto;
+}
+
+.ConversationInfoSection__Header {
+  height: 54px;
+  border-bottom: 1px solid var(--separator);
+}

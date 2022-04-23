@@ -1,41 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 
-import userApi from "@api/userApi";
-import { IConversation } from "@interfaces/Conversation";
-import { useAuth } from "@contexts/AuthContext";
+import { useSetConversations } from "@contexts/ConversationsContext";
+import { useEvent } from "@contexts/EventContext";
 
 import SidebarHeader from "./SidebarHeader";
-import ChatTab from "./ChatTab";
-import MiniSidebar from "./MiniSidebar";
+import Contacts from "@pages/Contacts";
+import FriendChats from "./FriendChats";
 
 import "./Sidebar.css";
 
 function Sidebar() {
-  const [conversations, setConversations] = useState<Array<IConversation>>([]);
+  const setConversations = useSetConversations();
 
-  const { user } = useAuth();
+  const socket = useEvent();
 
   useEffect(() => {
-    if (!user) return;
-    userApi.getMeConversations().then(setConversations);
-  }, [user]);
+    socket.on("users-status", ({ username, isActive }) => {
+      setConversations((cs) => {
+        cs.forEach((c) => {
+          c.participants.forEach((p) => {
+            if (p.user.username === username) {
+              p.user.isActive = isActive;
+            }
+          });
+        });
+        return [...cs];
+      });
+    });
+  }, [setConversations, socket]);
 
   return (
     <div className="Sidebar">
-      <div className="Sidebar__MiniSidebar">
-        <MiniSidebar />
+      <div className="Sidebar__Header">
+        <SidebarHeader />
       </div>
 
-      <div className="Sidebar__Main">
-        <div className="Sidebar__Main-Header">
-          <SidebarHeader />
-        </div>
-
-        <div className="Sidebar__Main-Conversations">
-          {conversations.map((conversation) => (
-            <ChatTab key={conversation.id} conversation={conversation} />
-          ))}
-        </div>
+      <div className="Sidebar__Conversations">
+        <Switch>
+          <Route path="/messages" component={FriendChats} />
+          <Route path="/contacts" component={Contacts} />
+        </Switch>
       </div>
     </div>
   );

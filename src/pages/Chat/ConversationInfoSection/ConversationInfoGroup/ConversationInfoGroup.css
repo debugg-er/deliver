@@ -1,0 +1,13 @@
+.ConversationInfoGroup {
+  margin: 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.ConversationInfoGroup__Name {
+  margin: 16px 12px;
+  color: var(--main-title-1);
+}

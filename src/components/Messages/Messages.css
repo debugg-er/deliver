@@ -1,0 +1,53 @@
+.Messages {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.Messages__Group {
+  display: flex;
+  flex-direction: column;
+}
+
+.Messages__Group-Messages {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 12px;
+}
+
+.Messages__Group-Messages-Message {
+  margin-bottom: 2px;
+}
+
+.Messages__Group .Messages__Group-Messages-Message:last-of-type .Message__Content {
+  border-top-left-radius: 16px;
+}
+
+.Messages__Group .Messages__Group-Messages-Message:first-of-type .Message__Content {
+  border-bottom-left-radius: 16px;
+}
+
+.Messages__Group .Messages__Group-Messages-Message:not(:first-child) .Message__Avatar {
+  opacity: 0;
+}
+
+.Messages__Group .Messages__Group-Messages-Message.me:last-child .Message__Content {
+  border-top-right-radius: 16px;
+}
+
+.Messages__Group .Messages__Group-Messages-Message.me:first-child .Message__Content {
+  border-bottom-right-radius: 16px;
+}
+
+.Messages__Group-Sender {
+  margin: 2px 42px;
+  color: #65676b;
+  font-size: 12;
+}
+
+.Messages__Group-Sender.me {
+  margin-left: auto;
+}
+
+.Messages__MyLastMessageStatus {
+  margin-left: auto;
+}

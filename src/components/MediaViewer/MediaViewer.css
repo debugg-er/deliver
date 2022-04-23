@@ -1,0 +1,71 @@
+.MediaViewer {
+  position: fixed;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #000d;
+}
+
+.MediaViewer__Btn {
+  position: absolute;
+  color: #ddd;
+  background-color: var(--main-grey-2);
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 24px !important;
+  z-index: 2;
+}
+
+.MediaViewer__Btn:hover {
+  color: black;
+  background-color: var(--main-background-2);
+}
+
+.MediaViewer__Media {
+  height: 90%;
+  width: 100%;
+}
+
+.MediaViewer__Media img,
+.MediaViewer__Media video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.MediaViewer__MediaList {
+  height: 10%;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  background-color: #0007;
+  overflow: auto;
+}
+
+.MediaViewer__MediaList-Item {
+  flex-shrink: 0;
+  height: calc(100% - 8px);
+  width: 80px;
+  margin: 4px;
+  opacity: 0.5;
+  border-radius: 3px;
+  transition: all 100ms;
+  border: 1px solid #0000;
+}
+
+.MediaViewer__MediaList-Item:hover,
+.MediaViewer__MediaList-Item.active {
+  opacity: 1;
+}
+
+.MediaViewer__MediaList-Item.active {
+  border: 1px solid var(--main-orange-1);
+}
+.MediaViewer__MediaList-Item > * {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

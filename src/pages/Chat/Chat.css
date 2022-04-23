@@ -1,0 +1,16 @@
+.Chat {
+  height: 100%;
+  display: flex;
+}
+
+.Chat__ChatSection {
+  flex-grow: 1;
+}
+
+.Chat__ConversationInfoSection {
+  height: 100%;
+  width: 300px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--separator);
+  background-color: var(--main-background-1);
+}

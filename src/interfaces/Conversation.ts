@@ -8,6 +8,8 @@ export interface IConversation {
 
   type: "personal" | "group";
 
+  _type?: "friend" | "stranger" | "group";
+
   createdAt: Date;
 
   participants: Array<IParticipant>;
@@ -15,4 +17,10 @@ export interface IConversation {
   messages: Array<IMessage>;
 
   lastMessage: IMessage | null;
+
+  seen: boolean;
+
+  delivered: boolean;
+
+  messageAhead: number;
 }

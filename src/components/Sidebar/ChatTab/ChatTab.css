@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  transition: background 100ms;
 }
 
 .ChatTab:hover {
@@ -31,7 +32,13 @@
 
 .ChatTab__Info-Name {
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
+}
+
+.ChatTab__Info-Name svg {
+  font-size: 14px;
+  margin-right: 4px;
+  margin-bottom: -2px;
 }
 
 .ChatTab__Info-LastMessage {
@@ -51,4 +58,32 @@
   top: 2px;
   font-size: 11px;
   color: #444;
+}
+
+.ChatTab--More-UnseenMessage {
+  position: absolute;
+  font-size: 11px;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  right: 4px;
+  background-color: var(--main-red-1);
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+}
+
+/* Skeleton */
+.ChatTabSkeleton {
+  display: flex;
+  align-items: center;
+  height: 68px;
+  padding: 0 18px;
+  width: 100%;
+}
+
+.ChatTabSkeleton__Avatar {
+  margin-right: 12px;
 }

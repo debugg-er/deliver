@@ -1,6 +1,8 @@
 import axios from "axios";
 import qs from "query-string";
 
+import processResponse from "@utils/processResponse";
+
 (() => {
   const { query } = qs.parseUrl(window.location.href);
   if (query.access_token) {
@@ -13,7 +15,7 @@ const token = window.localStorage.getItem("token");
 const client = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_BASE_URL,
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Type": "application/json",
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
@@ -39,34 +41,13 @@ client.interceptors.request.use((config) => {
 
   if (token) {
     config.headers = {
-      ...config.headers,
       Authorization: "Bearer " + token,
+      ...config.headers,
     };
   }
 
   return config;
 });
-
-function processResponse(obj: { [key: string]: any }): any {
-  for (const key in obj) {
-    if (obj[key] !== null && typeof obj[key] === "object") {
-      processResponse(obj[key]);
-      continue;
-    }
-
-    // append static url to media resource
-    if (key.includes("Path") && obj[key] !== null) {
-      obj[key] = process.env.REACT_APP_STATIC_URL + obj[key];
-    }
-
-    // parse string date -> Date
-    if (key.includes("At") && !isNaN(Date.parse(obj[key]))) {
-      obj[key] = new Date(obj[key]);
-    }
-  }
-
-  return obj;
-}
 
 client.interceptors.response.use(
   (response) => (response?.data?.data ? processResponse(response.data.data) : undefined),

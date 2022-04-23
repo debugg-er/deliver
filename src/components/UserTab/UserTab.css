@@ -1,0 +1,33 @@
+.UserTab {
+  display: flex;
+  align-items: center;
+  transition: all 100ms;
+}
+
+.UserTab__Avatar {
+  margin-right: 12px;
+}
+
+.UserTab__Name {
+  font-size: 16px;
+}
+
+.UserTab:hover {
+  background-color: var(--main-background-2);
+}
+
+.UserTab__MoreHoriz {
+  color: var(--main-grey-2);
+  margin-left: 4px;
+  opacity: 0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.UserTab:hover .UserTab__MoreHoriz {
+  opacity: 1;
+}
+
+.UserTab__MoreHoriz:hover {
+  color: var(--main-orange-1);
+}

@@ -7,7 +7,7 @@ export default [
   {
     component: Home,
     exact: true,
-    path: "/",
+    path: "/messages",
   },
   {
     component: Chat,

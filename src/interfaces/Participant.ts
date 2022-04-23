@@ -13,6 +13,8 @@ export interface IParticipant {
 
   removedAt: Date | null;
 
+  conversationId: number;
+
   messages: Array<IMessage>;
 
   conversation: IConversation;
@@ -22,5 +24,4 @@ export interface IParticipant {
   seenMessage: IMessage;
 
   deliveredMessage: IMessage;
-
 }

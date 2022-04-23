@@ -1,25 +1,46 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import "./App.css";
 
 import routes from "./pages/routes";
 
 import Sidebar from "@components/Sidebar";
+import MiniSidebar from "@components/MiniSidebar";
+import PopupWrapper from "@components/PopupWrapper";
+import Auth from "@pages/Auth";
+
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <div className="App__Sidebar">
-        <Sidebar />
-      </div>
+      <Switch>
+        <Route path="/auth" component={Auth} />
 
-      <div className="App__Main">
-        <Switch>
-          {routes.map((route, i) => (
-            <Route key={i} {...route} />
-          ))}
-        </Switch>
-      </div>
+        <Route
+          path="/"
+          component={() => (
+            <>
+              <div className="App__MiniSidebar">
+                <MiniSidebar />
+              </div>
+
+              <div className="App__Sidebar">
+                <Sidebar />
+              </div>
+
+              <div className="App__Main">
+                <Switch>
+                  {routes.map((route, i) => (
+                    <Route key={i} {...route} />
+                  ))}
+                </Switch>
+              </div>
+            </>
+          )}
+        />
+      </Switch>
+
+      <PopupWrapper />
     </div>
   );
 }

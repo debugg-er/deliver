@@ -1,0 +1,19 @@
+.Prompt {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Prompt__Input {
+  margin: 4px 0 16px 0;
+}
+
+.Prompt__Buttons {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+.Prompt__Buttons > * {
+  margin-left: 8px;
+}
