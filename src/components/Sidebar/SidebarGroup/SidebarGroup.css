@@ -6,6 +6,9 @@
   user-select: none;
   /* background-color: var(--main-background-3); */
 }
+.SidebarGroup__Header-Title {
+  flex-grow: 1;
+}
 
 .SidebarGroup__Header svg {
   margin-right: 12px;

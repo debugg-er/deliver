@@ -12,6 +12,7 @@ export interface IUser {
   isActive: boolean;
   status: "pending" | "sent" | "friend" | null;
   email: string;
+  mutualFriendCount: number;
 }
 
 export interface IToken extends JwtPayload {

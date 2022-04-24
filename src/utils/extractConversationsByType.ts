@@ -6,8 +6,8 @@ export default function extractConversationsByType(conversations: Array<IConvers
   groups: Array<IConversation>;
 } {
   return {
-    friends: conversations.filter((c) => c._type === "friend"),
-    strangers: conversations.filter((c) => c._type === "stranger"),
-    groups: conversations.filter((c) => c._type === "group"),
+    friends: conversations.filter((c) => c.type === "personal" && c._type === "friend"),
+    strangers: conversations.filter((c) => c.type === "personal" && c._type === "stranger"),
+    groups: conversations.filter((c) => c.type === "group"),
   };
 }

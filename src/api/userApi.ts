@@ -11,12 +11,18 @@ interface UpdateUserDto {
 }
 
 class UserApi {
-  public getMeInfo(): Promise<IUser> {
+  public getMeInfo(): Promise<
+    IUser & { friends: Array<IUser>; friendCount: number; friendRequestCount: number }
+  > {
     return client.get("/users/me");
   }
 
   public getUsers(q?: string): Promise<Array<IUser>> {
     return client.get("/users", { params: { q } });
+  }
+
+  public getMutualFriends(pagination?: { offset?: string; limit?: string }): Promise<Array<IUser>> {
+    return client.get("/users/me/may_knowns", { params: pagination });
   }
 
   public updateMyInfo(dto: Partial<UpdateUserDto>): Promise<IUser> {
@@ -27,14 +33,7 @@ class UserApi {
     type?: "stranger" | "group" | "friend",
     pagination?: { offset: number; limit: number }
   ): Promise<Array<IConversation>> {
-    const conversations: Array<IConversation> = await client.get("/users/me/conversations", {
-      params: { type, ...pagination },
-    });
-
-    return conversations.map((c) => {
-      c._type = type;
-      return c;
-    });
+    return client.get("/users/me/conversations", { params: { type, ...pagination } });
   }
 }
 export default new UserApi();

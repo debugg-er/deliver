@@ -34,3 +34,8 @@
 .CreateGroupDialog__SelectedUsers-Tag-Close:hover {
   color: var(--main-red-1);
 }
+
+.CreateGroupDialog__SearchResult-User {
+  padding: 8px 12px;
+  cursor: pointer;
+}

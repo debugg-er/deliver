@@ -53,11 +53,14 @@ function MiniSidebar() {
       {user && (
         <>
           <Separator />
+
           <MiniSidebarMenu Icon={<Avatar user={user} size={28} online={false} />}>
             <MenuItem onClick={() => setShowInfo(true)}>Cập nhật thông tin</MenuItem>
             <MenuItem>Đổi mật khẩu</MenuItem>
             <MenuItem onClick={logout}>Đăng xuất</MenuItem>
           </MiniSidebarMenu>
+
+          <div style={{ marginBottom: 6 }}></div>
         </>
       )}
 

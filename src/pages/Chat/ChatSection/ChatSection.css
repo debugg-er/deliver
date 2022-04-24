@@ -24,6 +24,20 @@
 .ChatSection__Header-Info-Title {
   font-weight: 500;
   font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.ChatSection__Header-Info-More {
+  display: flex;
+  align-items: center;
+}
+.ChatSection__Header-Info-More-Stranger {
+  border-radius: 3px;
+  background-color: var(--main-background-3);
+  padding: 3px 8px;
+  color: var(--main-grey-2);
+  font-size: 11px;
+  margin-right: 8px;
 }
 
 .ChatSection__Messages {

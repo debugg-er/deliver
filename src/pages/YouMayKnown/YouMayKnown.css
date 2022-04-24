@@ -1,0 +1,35 @@
+.WelcomeYouMayKnown {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.WelcomeYouMayKnown > * {
+  margin-bottom: 24px;
+}
+
+.YouMayKnown__Header {
+  padding: 12px 24px;
+  background-color: var(--main-background-1);
+  border-bottom: 1px solid var(--separator);
+  display: flex;
+  align-items: center;
+}
+
+.YouMayKnown__Header > svg {
+  font-size: 29px;
+  margin-right: 8px;
+}
+
+.YouMayKnown__List {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.YouMayKnown__List > * {
+  width: 30%;
+  height: 200px;
+}

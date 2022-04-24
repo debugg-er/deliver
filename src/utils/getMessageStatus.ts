@@ -17,7 +17,9 @@ export default function getMessageStatus(
   }
   if (conversation.type === "personal") {
     if (!_me) {
-      return `${message.createdAt.getHours()}:${message.createdAt.getMinutes()} `;
+      const h = message.createdAt.getHours().toString().padStart(2, "0");
+      const m = message.createdAt.getMinutes().toString().padStart(2, "0");
+      return `${h}:${m} `;
     } else {
       return deliveredParticipants.length === 0
         ? "Đã gửi"

@@ -19,6 +19,8 @@ import UserInfoDialog from "@components/UserInfoDialog";
 import MiniSidebarMenu from "@components/MiniSidebar/MiniSidebarMenu";
 
 import "./UserOptionMenu.css";
+import { useAuth } from "@contexts/AuthContext";
+import Confirm from "@components/Dialog/Confirm";
 
 interface UserOptionMenuProps {
   user: IUser;
@@ -37,8 +39,10 @@ function actionToStatus(action: ModifyContactAction): IUser["status"] {
 
 function UserOptionMenu({ user, Icon }: UserOptionMenuProps) {
   const [status, setStatus] = useState<IUser["status"]>(user.status);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
 
+  const { user: me } = useAuth();
   const history = useHistory();
   const pushMessage = usePushMessage();
 
@@ -72,63 +76,75 @@ function UserOptionMenu({ user, Icon }: UserOptionMenuProps) {
     }
   }
 
+  const isMe = user.username === me?.username;
   return (
     <>
       <MiniSidebarMenu Icon={Icon}>
-        <MenuItem onClick={handleCreateConversation}>
-          <ListItemIcon>
-            <Send />
-          </ListItemIcon>
-          Trò chuyện
-        </MenuItem>
+        {!isMe && (
+          <MenuItem onClick={handleCreateConversation}>
+            <ListItemIcon>
+              <Send />
+            </ListItemIcon>
+            Trò chuyện
+          </MenuItem>
+        )}
 
         <MenuItem onClick={() => setShowInfo(true)}>
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
-          Thông tin
+          {isMe ? "Cập nhật thông tin" : "Thông tin"}
         </MenuItem>
 
         <Divider />
 
-        {status === "pending" ? (
-          <>
-            <MenuItem onClick={() => handleModifyRelationship("accept_request")}>
+        {!isMe &&
+          (status === "pending" ? (
+            <>
+              <MenuItem onClick={() => handleModifyRelationship("accept_request")}>
+                <ListItemIcon>
+                  <PersonAdd />
+                </ListItemIcon>
+                Chấp nhận kết bạn
+              </MenuItem>
+              <MenuItem onClick={() => handleModifyRelationship("remove_request")}>
+                <ListItemIcon>
+                  <DoDisturbOn />
+                </ListItemIcon>
+                Từ chối kết bạn
+              </MenuItem>
+            </>
+          ) : status === "sent" ? (
+            <MenuItem onClick={() => handleModifyRelationship("remove_request")}>
               <ListItemIcon>
                 <PersonAdd />
               </ListItemIcon>
-              Chấp nhận kết bạn
+              Hủy yêu cầu
             </MenuItem>
-            <MenuItem onClick={() => handleModifyRelationship("remove_request")}>
+          ) : status === "friend" ? (
+            <MenuItem onClick={() => setShowConfirmDelete(true)}>
               <ListItemIcon>
-                <DoDisturbOn />
+                <PersonRemove />
               </ListItemIcon>
-              Từ chối kết bạn
+              Hủy kết bạn
             </MenuItem>
-          </>
-        ) : status === "sent" ? (
-          <MenuItem onClick={() => handleModifyRelationship("remove_request")}>
-            <ListItemIcon>
-              <PersonAdd />
-            </ListItemIcon>
-            Hủy yêu cầu
-          </MenuItem>
-        ) : status === "friend" ? (
-          <MenuItem onClick={() => handleModifyRelationship("unfriend")}>
-            <ListItemIcon>
-              <PersonRemove />
-            </ListItemIcon>
-            Hủy kết bạn
-          </MenuItem>
-        ) : (
-          <MenuItem onClick={() => handleModifyRelationship("send_request")}>
-            <ListItemIcon>
-              <PersonAdd />
-            </ListItemIcon>
-            Kết bạn
-          </MenuItem>
-        )}
+          ) : (
+            <MenuItem onClick={() => handleModifyRelationship("send_request")}>
+              <ListItemIcon>
+                <PersonAdd />
+              </ListItemIcon>
+              Kết bạn
+            </MenuItem>
+          ))}
       </MiniSidebarMenu>
+
+      <Confirm
+        title="Xác nhận"
+        message={`Xóa ${user.lastName} khỏi danh sách bạn bè`}
+        open={showConfirmDelete}
+        onClose={() => setShowConfirmDelete(false)}
+        onConfirm={() => handleModifyRelationship("unfriend")}
+      />
 
       <UserInfoDialog open={showInfo} onClose={() => setShowInfo(false)} user={user} />
     </>

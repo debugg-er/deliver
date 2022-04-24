@@ -10,6 +10,7 @@ interface SidebarGroupProps {
   hasMore?: boolean;
   children: React.ReactFragment;
   onExpand?: () => void;
+  num?: number;
 }
 
 function SidebarGroup({
@@ -18,6 +19,7 @@ function SidebarGroup({
   expandByDefault = false,
   hasMore = false,
   onExpand,
+  num,
 }: SidebarGroupProps) {
   const [expand, setExpand] = useState(expandByDefault);
 
@@ -26,6 +28,7 @@ function SidebarGroup({
       <div className="SidebarGroup__Header" onClick={() => setExpand(!expand)}>
         {expand ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
         <div className="SidebarGroup__Header-Title Global__Title-2">{title}</div>
+        {num !== undefined && <div className="Global__Title-3">{num}</div>}
       </div>
       {expand && children}
 

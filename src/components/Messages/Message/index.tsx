@@ -9,13 +9,13 @@ import { useSetMessages } from "@contexts/MessagesContext";
 import { useConversation } from "@contexts/ConversationContext.tsx";
 import messageApi from "@api/messageApi";
 import { getParticipantName } from "@utils/getConversationTitle";
+import getMessageStatus from "@utils/getMessageStatus";
 
 import Avatar from "@components/Avatar";
 import Attachments from "@components/Attachments";
 import MessageActions from "./MessageActions";
 
 import "./Message.css";
-import getMessageStatus from "@utils/getMessageStatus";
 
 interface MessageProps {
   message: IMessageWithAction;

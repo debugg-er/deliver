@@ -10,6 +10,7 @@ import getConversationName from "@utils/getConversationTitle";
 import Avatar from "@components/Avatar";
 
 import "./ChatTab.css";
+import getLastMessageContent from "@utils/getLastMessageContent";
 
 interface ChatTabProps {
   conversation: IConversation;
@@ -21,7 +22,6 @@ function ChatTab({ conversation }: ChatTabProps) {
   if (!user) {
     return null;
   }
-  const sender = conversation.lastMessage?.participant?.user;
   const participants = conversation.participants.filter(
     (p) => p.user.username !== user.username || conversation.type === "group"
   );
@@ -46,22 +46,7 @@ function ChatTab({ conversation }: ChatTabProps) {
           className="ChatTab__Info-LastMessage Global__LineLimit-1"
           style={{ fontWeight: conversation.seen ? "normal" : "500" }}
         >
-          {sender &&
-            (sender.username === user.username
-              ? "Bạn: "
-              : conversation.type === "personal"
-              ? ""
-              : `${sender.firstName} ${sender.lastName}: `)}
-          {!conversation.lastMessage ? (
-            "Chưa có tin nhắn nào"
-          ) : conversation.lastMessage.revokedAt ? (
-            <i>Đã thu hồi tin nhắn</i>
-          ) : conversation.lastMessage.attachments.length > 0 &&
-            !conversation.lastMessage.content ? (
-            "Đã gửi hình ảnh"
-          ) : (
-            conversation.lastMessage.content
-          )}
+          {getLastMessageContent(user, conversation)}
         </div>
       </div>
 

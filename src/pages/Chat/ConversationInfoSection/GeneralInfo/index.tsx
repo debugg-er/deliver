@@ -66,21 +66,6 @@ function GeneralInfo(props: GeneralInfoProps) {
     };
   }, [conversation.id, isShareLocation, socket]);
 
-  /* useEffect(() => { */
-  /*   function handleChangeNickname(participant: IParticipant) { */
-  /*     if (participant.conversation.id !== conversation.id) return; */
-  /*     conversation.participants = [ */
-  /*       ...conversation.participants.filter((p) => p.id !== participant.id), */
-  /*       participant, */
-  /*     ]; */
-  /*     setConversation({ ...conversation }); */
-  /*   } */
-  /*   socket.on("change_nickname", handleChangeNickname); */
-  /*   return () => { */
-  /*     socket.off("change_nickname", handleChangeNickname); */
-  /*   }; */
-  /* }, [conversation, setConversation, socket]); */
-
   useEffect(() => {
     function handleShareLocation(dto: any) {
       if (dto.participant.user.username === user?.username) return;
@@ -128,7 +113,7 @@ function GeneralInfo(props: GeneralInfoProps) {
     <ConversationInfoGroup className="GeneralInfo" name="General Info">
       <div className="GeneralInfo__User">
         <div className="GeneralInfo__User-Avatar">
-          <Avatar user={participant.user} />
+          <Avatar user={participant.user} allowShowOptions />
         </div>
 
         <div className="GeneralInfo__User-Detail">

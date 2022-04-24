@@ -39,8 +39,8 @@ function Messages({ messages }: MessagesProps) {
   const [lastMessage] = messages;
   return (
     <div className="Messages">
-      {groups.map((group) => (
-        <div className="Messages__Group">
+      {groups.map((group, i) => (
+        <div key={i} className="Messages__Group">
           <div className="Messages__Group-Messages">
             {group.map((m, i) => (
               <Message

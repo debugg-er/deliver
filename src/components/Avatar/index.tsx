@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { IUser } from "@interfaces/User";
 
-import UserInfoDialog from "@components/UserInfoDialog";
+import UserOptionMenu from "@components/UserOptionMenu";
 
 import "./Avatar.css";
-import UserOptionMenu from "@components/UserOptionMenu";
 
 interface AvatarProps {
   user: IUser | Array<IUser>;

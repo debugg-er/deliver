@@ -1,0 +1,22 @@
+.UserBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--separator);
+  background-color: var(--main-background-1);
+  border-radius: 3px;
+}
+
+.UserBlock__Avatar {
+  margin-bottom: 12px;
+}
+
+.UserBlock__MutualCount {
+  color: var(--main-grey-2);
+  margin-bottom: 8px;
+}
+
+.UserBlock__AddFriendBtn {
+  padding: 6px 24px;
+}

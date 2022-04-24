@@ -2,7 +2,6 @@ import { IConversation } from "@interfaces/Conversation";
 import React, { useEffect, useState } from "react";
 
 import { IMessage } from "@interfaces/Message";
-import processResponse from "@utils/processResponse";
 import userApi from "@api/userApi";
 
 import { useAuth } from "./AuthContext";
@@ -47,15 +46,22 @@ export function ConversationsProvider(props: { children?: React.ReactNode }) {
   }, [setLoading, user]);
 
   useEffect(() => {
-    function handleBroadcast(mess: IMessage) {
-      const message = processResponse(mess);
+    function handleBroadcast(message: IMessage) {
       const conversationId = window.location.pathname.match(/(?<=\/messages\/)\d+/)?.[0];
       const isThisConv = message.participant.conversation.id === +(conversationId || 0);
 
       setConversations((cs) => {
-        let conversation =
-          cs.find((c) => c.id === message.participant.conversation.id) ||
-          message.participant.conversation;
+        let conversation = cs.find((c) => c.id === message.participant.conversation.id);
+
+        if (!conversation) {
+          conversation = message.participant.conversation;
+          if (user && conversation.type === "personal") {
+            const [p] = conversation.participants.filter((p) => p.user.username !== user.username);
+            conversation._type = user.friends.find((f) => f.username === p.user.username)
+              ? "friend"
+              : "stranger";
+          }
+        }
 
         conversation.lastMessage = message;
         conversation.seen = isThisConv;
@@ -104,7 +110,7 @@ export function ConversationsProvider(props: { children?: React.ReactNode }) {
       socket.off("revoke_message", handleRevokeMessage);
       socket.off("change_nickname", handleChangeNickname);
     };
-  }, [setConversations, socket]);
+  }, [setConversations, socket, user]);
 
   return (
     <SetConversationsContext.Provider value={setConversations}>

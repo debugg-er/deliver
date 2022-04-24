@@ -46,12 +46,14 @@
   word-break: break-all;
   background: #e4e6eb;
   padding: 12px;
+  align-self: flex-start;
   border-radius: 0 16px 16px 0;
 }
 
 .Message.me .Message__Content-Text {
   border-radius: 16px 0 0 16px;
   background-color: var(--main-red-1);
+  align-self: flex-end;
   color: white;
 }
 

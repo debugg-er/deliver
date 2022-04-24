@@ -133,6 +133,10 @@ function ChatSection({ onShowInfoChange, showInfo }: ChatSectionProps) {
             {getConversationName(conversation, user?.username)}
           </div>
           <div className="ChatSection__Header-Info-More">
+            {conversation.type === "personal" &&
+              !user.friends.some((f) => f.username === participants[0].user.username) && (
+                <div className="ChatSection__Header-Info-More-Stranger">Người lạ</div>
+              )}
             {conversation.type === "personal"
               ? participants[0].user.isActive
                 ? "Đang hoạt động"

@@ -76,9 +76,17 @@ function CreateGroupDialog({ open, onClose, onCreateGroup }: CreateGroupDialogPr
         />
 
         <div className="CreateGroupDialog__SearchResult">
-          {users.map((u) => (
-            <UserTab key={u.username} user={u} onClick={() => handleSelectUser(u)} hideHoriz />
-          ))}
+          {users
+            .filter((u) => selectedUsers.every((su) => su.username !== u.username))
+            .map((u) => (
+              <UserTab
+                className="CreateGroupDialog__SearchResult-User"
+                key={u.username}
+                user={u}
+                onClick={() => handleSelectUser(u)}
+                hideHoriz
+              />
+            ))}
         </div>
 
         <div className="Prompt__Buttons" style={{ marginTop: 8 }}>

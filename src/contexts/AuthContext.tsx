@@ -5,7 +5,10 @@ import { IUser, IToken } from "@interfaces/User";
 import userApi from "@api/userApi";
 import accountApi from "@api/accountApi";
 
-type Auth = (IUser & IToken & { token: string }) | null;
+type Auth =
+  | (IUser &
+     IToken & { token: string; friends: Array<IUser>; friendCount: number; friendRequestCount: number })
+  | null;
 
 const AuthContext = React.createContext<{
   // undefined means the app is loading user credential

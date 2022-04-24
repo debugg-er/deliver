@@ -33,7 +33,6 @@ export function MediaViewerProvider({ children }: any) {
 
   useEffect(() => {
     if (!media) return;
-    console.log(media);
     attachmentApi.getSurroundAttachment(media.id).then((_attachments) => {
       setAttachments((as) => {
         let newAttachments = [..._attachments, ...as];

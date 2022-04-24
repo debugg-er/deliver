@@ -55,6 +55,12 @@ body,
   font-weight: 500;
 }
 
+.Global__Title-3 {
+  font-size: 15px;
+  color: #424d57;
+  font-weight: 500;
+}
+
 a {
   text-decoration: none;
   color: inherit;
