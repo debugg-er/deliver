@@ -11,6 +11,8 @@ export default function getConversationName(conversation: IConversation, me?: st
     return getParticipantName(participant);
   }
 
+  if (conversation.title) return conversation.title;
+
   return (
     conversation.participants
       .slice(0)

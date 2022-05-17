@@ -5,9 +5,10 @@ import { useConversation } from "@contexts/ConversationContext.tsx";
 
 import ConversationInfoHeader from "./ConversationInfoHeader";
 import GeneralInfo from "./GeneralInfo";
+import Media from "./Media";
+import GroupInfo from "./GroupInfo";
 
 import "./ConversationInfoSection.css";
-import Media from "./Media";
 
 interface ConversationInfoSectionProps {}
 
@@ -33,6 +34,7 @@ function ConversationInfoSection(props: ConversationInfoSectionProps) {
       </div>
 
       {conversation.type === "personal" && <GeneralInfo />}
+      {conversation.type === "group" && <GroupInfo />}
 
       <Media />
     </div>

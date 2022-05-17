@@ -6,6 +6,11 @@
   justify-content: center;
 }
 
+.YouMayKnown {
+  height: 100%;
+  overflow: auto;
+}
+
 .WelcomeYouMayKnown > * {
   margin-bottom: 24px;
 }
@@ -26,10 +31,16 @@
 .YouMayKnown__List {
   padding: 24px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
 }
 
 .YouMayKnown__List > * {
-  width: 30%;
+  width: calc(33.3% - 18px);
   height: 200px;
+  margin: 0 24px 24px 0;
+}
+
+.YouMayKnown__List > *:nth-child(3n) {
+  margin: 0 0 24px 0;
 }

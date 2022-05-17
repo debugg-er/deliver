@@ -1,0 +1,41 @@
+.GroupMembersDialog {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.GroupMembersDialog__SearchResult {
+  height: 360px;
+  overflow: auto;
+}
+
+.GroupMembersDialog__SelectedUsers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.GroupMembersDialog__SelectedUsers-Tag {
+  background-color: var(--main-background-3);
+  padding: 2px 4px;
+  margin: 2px 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.GroupMembersDialog__SelectedUsers-Tag-Close {
+  font-size: 13px !important;
+  margin-left: 2px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.GroupMembersDialog__SelectedUsers-Tag-Close:hover {
+  color: var(--main-red-1);
+}
+
+.GroupMembersDialog__SearchResult-User {
+  padding: 8px 12px;
+  cursor: pointer;
+}

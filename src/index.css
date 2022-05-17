@@ -10,6 +10,9 @@ html {
   --main-orange-1: #ff5100;
   --main-grey-2: #65676b;
   --main-red-1: #f4574c;
+  --main-red-2: #f4877c;
+  --main-green-1: #009642;
+  --main-green-2: #32b672;
 }
 
 body {
@@ -89,6 +92,7 @@ a:hover {
 }
 
 .Global__BlueButton,
+.Global__RedButton,
 .Global__Button {
   position: relative;
   padding: 4px 10px;
@@ -104,11 +108,15 @@ a:hover {
 .Global__BlueButton {
   background-color: var(--main-blue-1);
 }
+.Global__RedButton {
+  background-color: var(--main-red-1);
+}
 .Global__Button {
   color: grey;
 }
 
 .Global__Button:hover::before,
+.Global__RedButton:hover::before,
 .Global__BlueButton:hover::before {
   content: "";
   position: absolute;

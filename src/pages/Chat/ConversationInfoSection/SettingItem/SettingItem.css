@@ -1,0 +1,18 @@
+.SettingItem {
+  font-size: 13px;
+  color: var(--main-title-1) !important;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 0;
+  margin: 4px 0;
+}
+
+.SettingItem:hover {
+  color: black !important;
+}
+
+.SettingItem svg {
+  font-size: 18px;
+  margin-right: 12px;
+}

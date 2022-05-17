@@ -1,0 +1,37 @@
+.GroupInfo {
+  margin: 12px;
+}
+
+.GroupInfo__Head {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.GroupInfo__Head-Name {
+  position: relative;
+  width: fit-content;
+  max-width: 85%;
+  margin: 8px 0;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+}
+
+.GroupInfo__Head-Name:hover svg {
+  opacity: 1;
+}
+
+.GroupInfo__Head-Name > svg {
+  position: absolute;
+  left: 100%;
+  opacity: 0;
+  font-size: 15px;
+  padding-left: 4px;
+  cursor: pointer;
+  color: var(--main-grey-1);
+}
+
+.GroupInfo__Head-Name > svg:hover {
+  color: var(--main-grey-2);
+}

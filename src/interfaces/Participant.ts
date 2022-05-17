@@ -7,7 +7,7 @@ export interface IParticipant {
 
   nickname: string | null;
 
-  role: "participant" | "admin";
+  role: "member" | "admin";
 
   joinedAt: Date;
 

@@ -128,3 +128,7 @@
 .Message__Attachments {
   display: flex;
 }
+
+.Message.me .Message__Attachments {
+  flex-direction: row-reverse;
+}

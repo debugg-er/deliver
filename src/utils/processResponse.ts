@@ -6,12 +6,12 @@ export default function processResponse(obj: { [key: string]: any }): any {
     }
 
     // append static url to media resource
-    if (key.includes("Path") && obj[key] !== null) {
+    if (key.includes("Path") && obj[key] !== null && !obj[key].startsWith("http")) {
       obj[key] = process.env.REACT_APP_STATIC_URL + obj[key];
     }
 
     // parse string date -> Date
-    if (key.includes("At") && !isNaN(Date.parse(obj[key]))) {
+    if (key.includes("At") && !isNaN(Date.parse(obj[key])) && !(obj[key] instanceof Date)) {
       obj[key] = new Date(obj[key]);
     }
   }

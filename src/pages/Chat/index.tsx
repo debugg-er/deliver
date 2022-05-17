@@ -13,6 +13,7 @@ import ChatSection from "./ChatSection";
 import ConversationInfoSection from "./ConversationInfoSection";
 
 import "./Chat.css";
+import { usePushMessage } from "@contexts/MessageQueueContext";
 
 function Chat() {
   const { conversationId } = useParams<{ conversationId: string }>();
@@ -22,14 +23,16 @@ function Chat() {
   const { user } = useAuth();
   const setLoading = useSetLoading();
   const socket = useEvent();
+  const pushMessage = usePushMessage();
 
   useEffect(() => {
     setLoading(true);
     conversationApi
       .getConversation(+conversationId)
       .then(setConversation)
+      .catch(() => pushMessage("Không thể tải, có thể bạn đã không còn ở trong nhóm nữa", "error"))
       .finally(() => setLoading(false));
-  }, [conversationId, setLoading]);
+  }, [conversationId, pushMessage, setLoading]);
 
   useEffect(() => {
     function handleChangeNickname(participant: IParticipant) {

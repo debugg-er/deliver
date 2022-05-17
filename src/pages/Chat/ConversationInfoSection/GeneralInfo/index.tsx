@@ -20,6 +20,9 @@ import Map from "@components/Map";
 
 import "./GeneralInfo.css";
 import { useHistory } from "react-router-dom";
+import SettingItem from "../SettingItem";
+import { usePushMessage } from "@contexts/MessageQueueContext";
+import { useUpdateEffect } from "react-use";
 
 interface GeneralInfoProps {}
 
@@ -34,6 +37,7 @@ function GeneralInfo(props: GeneralInfoProps) {
   const setConversations = useSetConversations();
   const socket = useEvent();
   const history = useHistory();
+  const pushMessage = usePushMessage();
 
   useEffect(() => {
     setIsShareLocation(false);
@@ -42,7 +46,7 @@ function GeneralInfo(props: GeneralInfoProps) {
     // eslint-disable-next-line
   }, [conversation.id]);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (!isShareLocation) {
       socket.emit("share_location", {
         action: "stop_sharing",
@@ -50,6 +54,8 @@ function GeneralInfo(props: GeneralInfoProps) {
       });
       return;
     }
+
+    pushMessage("Bắt đầu chia sẻ vị trí");
     function handleShareLocation() {
       navigator.geolocation.getCurrentPosition((location) => {
         socket.emit("share_location", {
@@ -64,7 +70,7 @@ function GeneralInfo(props: GeneralInfoProps) {
     return () => {
       clearInterval(interval);
     };
-  }, [conversation.id, isShareLocation, socket]);
+  }, [conversation.id, isShareLocation, pushMessage, socket]);
 
   useEffect(() => {
     function handleShareLocation(dto: any) {
@@ -125,21 +131,23 @@ function GeneralInfo(props: GeneralInfoProps) {
       </div>
 
       <div className="GeneralInfo__Settings">
-        <div className="GeneralInfo__Settings-Item" onClick={() => setOpenNicknamePrompt(true)}>
-          <Abc style={{ transform: "scale(1.3)" }} />
-          Change nickname
-        </div>
-        <div
-          className="GeneralInfo__Settings-Item"
+        <SettingItem
+          Icon={<Abc />}
+          text="Đặt biệt danh"
+          onClick={() => setOpenNicknamePrompt(true)}
+        />
+        <SettingItem
+          Icon={
+            <LocationOn style={{ color: isShareLocation ? "var(--main-orange-1)" : undefined }} />
+          }
+          text={isShareLocation ? "Dừng chia sẻ" : "Chia sẻ vị trí của bạn"}
           onClick={() => setIsShareLocation(!isShareLocation)}
-        >
-          <LocationOn style={{ color: isShareLocation ? "var(--main-orange-1)" : undefined }} />
-          {isShareLocation ? "Stop sharing" : "Share your location"}
-        </div>
-        <div className="GeneralInfo__Settings-Item" onClick={() => setOpenCreateGroupDialog(true)}>
-          <GroupAdd />
-          Create group with this user
-        </div>
+        />
+        <SettingItem
+          Icon={<GroupAdd />}
+          text="Tạo nhóm với người này"
+          onClick={() => setOpenCreateGroupDialog(true)}
+        />
       </div>
 
       {coordinate && (

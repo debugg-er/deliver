@@ -2,6 +2,8 @@ import React from "react";
 
 import "./Home.css";
 
+Error.stackTraceLimit = 999;
+
 function Home() {
   return (
     <div className="Home">

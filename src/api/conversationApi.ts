@@ -30,6 +30,21 @@ class ConversationApi {
     return client.get(`/conversations/${username}`);
   }
 
+  public updateConversation(
+    id: number,
+    dto: {
+      title?: string;
+      removeParticipants?: Array<number>;
+      addParticipantUsernames?: Array<string>;
+    }
+  ): Promise<IConversation> {
+    return client.patch(`/conversations/${id}`, dto);
+  }
+
+  public leaveConversation(id: number) {
+    return client.patch(`/conversations/${id}/leave`);
+  }
+
   public createConversation(
     type: IConversation["type"],
     participantUsernames: Array<string> | string

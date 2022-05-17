@@ -1,8 +1,11 @@
 .Media {
-  margin: 12px 12px 8px 12px;
+  margin: 12px 0 8px 12px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+}
+
+.Media__AttachmentWrapper {
+  margin: 0 6px 6px 0;
 }
 
 .Media__Attachment {

@@ -33,6 +33,6 @@ export default function getLastMessageContent(me: IUser, conversation: IConversa
         attachmentType = "file";
         break;
     }
-    return prefix + ": Đã gửi một " + attachmentType;
+    return (prefix ? prefix + ": " : "") + "Đã gửi một " + attachmentType;
   }
 }

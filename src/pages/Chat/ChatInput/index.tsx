@@ -44,6 +44,13 @@ function ChatInput({ onSend }: ChatInputProps) {
     setAttachments((fs) => [...fs, ...Array.from(files).map((f: File) => fileApi.postFile(f))]);
   }
 
+  function handlePasteFiles(e: React.ClipboardEvent<HTMLTextAreaElement>) {
+    const { files } = e.clipboardData;
+    if (files.length === 0) return;
+    e.preventDefault();
+    setAttachments((fs) => [...fs, ...Array.from(files).map((f: File) => fileApi.postFile(f))]);
+  }
+
   useOutsiteClick(emojiPickerRef, () => {
     setShowEmojiPicker(false);
   });
@@ -80,6 +87,7 @@ function ChatInput({ onSend }: ChatInputProps) {
               handleSend();
             }
           }}
+          onPaste={handlePasteFiles}
         />
 
         <div className="ChatInput__Input-Files">

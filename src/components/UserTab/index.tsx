@@ -17,9 +17,10 @@ interface UserTabProps {
   onModify?: (action: ModifyContactAction) => void;
   onClick?: () => any;
   hideHoriz?: boolean;
+  horiz?: React.ReactElement | boolean | null;
 }
 
-function UserTab({ user, className, onModify, onClick, hideHoriz = false }: UserTabProps) {
+function UserTab({ user, className, onModify, onClick, hideHoriz = false, horiz }: UserTabProps) {
   const [isPending, setIsPending] = useState(user.status === "pending");
 
   const pushMessage = usePushMessage();
@@ -51,9 +52,10 @@ function UserTab({ user, className, onModify, onClick, hideHoriz = false }: User
         </div>
       )}
 
-      {!hideHoriz && (
-        <UserOptionMenu user={user} Icon={<MoreHoriz className="UserTab__MoreHoriz" />} />
-      )}
+      {!hideHoriz &&
+        (horiz || (
+          <UserOptionMenu user={user} Icon={<MoreHoriz className="UserTab__MoreHoriz" />} />
+        ))}
     </div>
   );
 }

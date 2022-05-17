@@ -1,0 +1,86 @@
+.Call {
+  position: relative;
+  background-color: #222;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Call__User {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Call__User.video.calling {
+  justify-content: flex-end;
+}
+
+.Call__User-Name {
+  margin-top: 8px;
+  font-size: 17px;
+}
+
+.Call__User-Status {
+  color: var(--main-grey-1);
+}
+.Call__Options {
+  position: relative;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.Call__Options > svg {
+  font-size: 24px;
+  padding: 4px;
+  color: var(--main-grey-2);
+  background-color: var(--main-background-1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.Call__Options > svg:not(:last-child) {
+  margin-right: 24px;
+}
+
+.Call__Options-Call {
+  color: white !important;
+  background-color: var(--main-green-1) !important;
+}
+
+.Call__Options-Call:hover {
+  background-color: var(--main-green-2) !important;
+}
+.Call__Options-CallEnd {
+  color: white !important;
+  background-color: var(--main-red-1) !important;
+}
+.Call__Options-CallEnd:hover {
+  background-color: var(--main-red-2) !important;
+}
+
+.Call__UserVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.Call__MyVideo {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  height: auto;
+  min-height: 100px;
+  width: 100px;
+  z-index: 2;
+}

@@ -3,7 +3,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 import Phone from "@mui/icons-material/Phone";
+import Duo from "@mui/icons-material/Duo";
 
+import { useCall } from "@contexts/CallContext";
 import { MessagesProvider } from "@contexts/MessagesContext";
 import { useConversation } from "@contexts/ConversationContext.tsx";
 import { useSetLoading } from "@contexts/LoadingContext";
@@ -33,6 +35,7 @@ function ChatSection({ onShowInfoChange, showInfo }: ChatSectionProps) {
   const [messages, setMessages] = useState<Array<IMessage>>([]);
   const messagesRef = React.createRef<HTMLDivElement>();
 
+  const [call, setCall] = useCall();
   const { user } = useAuth();
   const conversation = useConversation();
   const socket = useEvent();
@@ -116,11 +119,18 @@ function ChatSection({ onShowInfoChange, showInfo }: ChatSectionProps) {
     setMessages((ms) => [...ms, ..._messages]);
   }
 
+  function handleCall(type: "audio" | "video") {
+    if (!call && user) {
+      const [to] = conversation.participants.filter((p) => p.user.username !== user.username);
+      setCall({ action: "call", from: user, to: to.user, type: type });
+    }
+  }
+
   if (!user) return null;
 
-  const participants = conversation.participants.filter(
-    (p) => p.user.username !== user.username || conversation.type === "group"
-  );
+  const participants = conversation.participants
+    .filter((p) => p.user.username !== user.username || conversation.type === "group")
+    .filter((p) => p.removedAt === null);
 
   return (
     <div className="ChatSection">
@@ -145,7 +155,8 @@ function ChatSection({ onShowInfoChange, showInfo }: ChatSectionProps) {
           </div>
         </div>
         <div className="ChatSection--Header-Expand">
-          <Phone style={{ marginRight: 12 }} />
+          <Phone style={{ marginRight: 12 }} onClick={() => handleCall("audio")} />
+          <Duo style={{ marginRight: 12 }} onClick={() => handleCall("video")} />
 
           {showInfo && <ArrowForwardIos onClick={() => onShowInfoChange(false)} />}
           {!showInfo && <ArrowBackIos onClick={() => onShowInfoChange(true)} />}

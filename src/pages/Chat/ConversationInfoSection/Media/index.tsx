@@ -75,16 +75,17 @@ function Media() {
         )}
         {attachments.length > 0 &&
           attachments.map((a) => (
-            <div
-              key={a.attachmentPath}
-              className={classNames("Media__Attachment", a.type === "video" && "playable")}
-              onClick={() => setMedia(a)}
-            >
-              {a.type === "image" ? (
-                <img src={a.attachmentPath} alt="" />
-              ) : (
-                <video src={a.attachmentPath}></video>
-              )}
+            <div key={a.attachmentPath} className="Media__AttachmentWrapper">
+              <div
+                className={classNames("Media__Attachment", a.type === "video" && "playable")}
+                onClick={() => setMedia(a)}
+              >
+                {a.type === "image" ? (
+                  <img src={a.attachmentPath} alt="" />
+                ) : (
+                  <video src={a.attachmentPath}></video>
+                )}
+              </div>
             </div>
           ))}
       </div>
